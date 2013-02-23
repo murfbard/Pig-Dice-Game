@@ -1,0 +1,5 @@
+C:\Users\Keith\Dropbox\Programming\Pig Dice Game\Pig Dice Game\Pig Dice Game\bin\Debug\Pig Dice Game.exe
+C:\Users\Keith\Dropbox\Programming\Pig Dice Game\Pig Dice Game\Pig Dice Game\bin\Debug\Pig Dice Game.pdb
+C:\Users\Keith\Dropbox\Programming\Pig Dice Game\Pig Dice Game\Pig Dice Game\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Keith\Dropbox\Programming\Pig Dice Game\Pig Dice Game\Pig Dice Game\obj\x86\Debug\Pig Dice Game.exe
+C:\Users\Keith\Dropbox\Programming\Pig Dice Game\Pig Dice Game\Pig Dice Game\obj\x86\Debug\Pig Dice Game.pdb
