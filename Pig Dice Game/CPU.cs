@@ -12,39 +12,50 @@ namespace Pig_Dice_Game
             this.Name = "CPU";
         }
 
-        public void CPUTurn()
+        public void CPUTurn(Player human, Player cpu, int ScoreToWin)
         {
             bool TurnContinues = true;
 
             do
             {
-                Console.WriteLine("");
-                Console.WriteLine("Begin CPU Turn -- CPU Score is currently " + Score);
-
-                if (AITestForReroll(Score))
+                if (AITestForReroll(cpu.Score, human.Score))
                 {
                     TurnContinues = Roll();
                 }
                 else
                 {
+                    Console.Write("The CPU has decided to end his turn.");
                     TurnContinues = false;
                 }
-                Console.WriteLine("");
-                Console.WriteLine("Hit any key to continue.");
-                Console.ReadKey();
+
+                if (TurnContinues)
+                {
+                    TurnContinues = !DidIWin(ScoreToWin);
+                }
+
+                if (TurnContinues)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Hit any key to continue the CPU's turn.");
+                    Console.ReadKey();
+                    Console.WriteLine("");
+                }
+
             }
             while (TurnContinues);
 
             Console.WriteLine("");
-            Console.WriteLine("CPU Turn is over, Player turn begins.");
-            Console.WriteLine("Hit any key to begin Player turn.");
+            Console.WriteLine("CPU Turn is over.");
+            Console.WriteLine("Hit any key to continue.");
             Console.ReadKey();
+            Console.WriteLine("");
+            Console.WriteLine("");
 
         }
 
-        public bool AITestForReroll(int Score)
+        public bool AITestForReroll(int Score, int OpponentScore)
         {
-            if (Score < 60)
+            if (Score < OpponentScore + 20)
             {
                 return true;
             }

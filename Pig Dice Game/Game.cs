@@ -7,11 +7,9 @@ namespace Pig_Dice_Game
 {
     class Game
     {
-        int CPUScore = 0;
-        int PlayerScore = 0;
         bool continueGame = true;
         bool IsPlayerTurn = false;
-        int ScoreToWin = 100;
+        int ScoreToWin = 70;
 
         CPU cpuPlayer = new CPU();
         Human humanPlayer = new Human();
@@ -19,35 +17,30 @@ namespace Pig_Dice_Game
 
         public void NewGame()
         {
-            Console.WriteLine("Pig, Keith's edition!");
-            Console.WriteLine("");
-            Console.WriteLine("Each turn you roll 2 dice.");
-            Console.WriteLine("If you get double 1s, you automatically LOSE.");
-            Console.WriteLine("If you get a single 1, you don't add the points and your turn is over.");
-            Console.WriteLine("If you do not get a 1, you add your points and you can go again IF you choose!");
-            Console.WriteLine("");
-            Console.WriteLine("First to 100 wins! (if your opponent is eliminated you win)");
+
+            GameMesssages.BeginGame(ScoreToWin);
 
             do
             {
-
-
                 if (IsPlayerTurn)
                 {
-                    
-                    humanPlayer.PlayerTurn();
+                    GameMesssages.TurnBegins(humanPlayer, cpuPlayer);
+
+                    humanPlayer.BeginTurn(humanPlayer, cpuPlayer, ScoreToWin);
 
                     IsPlayerTurn = false;
                 }
                 else
                 {
-                    cpuPlayer.CPUTurn();
+                    GameMesssages.TurnBegins(cpuPlayer, humanPlayer);
+
+                    cpuPlayer.CPUTurn(humanPlayer, cpuPlayer, ScoreToWin);
 
                     IsPlayerTurn = true;
                 }
 
-                if (CPUScore > ScoreToWin 
-                    || PlayerScore > ScoreToWin 
+                if (cpuPlayer.Score >= ScoreToWin
+                    || humanPlayer.Score >= ScoreToWin 
                     || cpuPlayer.ForcedLose
                     || humanPlayer.ForcedLose)
                 {
@@ -55,37 +48,18 @@ namespace Pig_Dice_Game
                 }
             } while (continueGame);
 
-            if(CPUScore > ScoreToWin || humanPlayer.ForcedLose)
-            {
-                Console.WriteLine("");
-                Console.WriteLine("The computer beat you!");
-            }
-            else if(PlayerScore > ScoreToWin || cpuPlayer.ForcedLose)
-            {
-                Console.WriteLine("");
-                Console.WriteLine("You beat the computer!");
-            }
-            else
-            {
-                Console.WriteLine("");
-                Console.WriteLine("I don't know what happened!");
-            }
+            GameMesssages.EndGame(humanPlayer, cpuPlayer, ScoreToWin);
+
+            Console.ReadKey();
             Console.WriteLine("");
-            Console.WriteLine("Hit any key to end the game.");
-            Console.ReadKey();
-            
+            Console.WriteLine("");
+
         }
 
 
 
-        public void PlayerTurn()
-        {
-            Console.WriteLine("Playerturn!");
-            Console.ReadKey();
-        }
 
-        
 
-        
+
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="CPU.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameMesssages.cs" />
     <Compile Include="Human.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

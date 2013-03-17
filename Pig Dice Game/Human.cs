@@ -10,18 +10,18 @@ namespace Pig_Dice_Game
         public Human()
         {
             Name = "Player";
-
         }
-        public void PlayerTurn()
+
+        public void BeginTurn(Player human, Player cpu, int ScoreToWin)
         {
             bool TurnContinues = true;
 
             do
             {
-                Console.WriteLine("");
-                Console.WriteLine("Player Turn -- Your score is " + Score);
+                GameMesssages.GetScore(human, cpu);
                 Console.WriteLine("Do you want to roll? (y/n)");
                 System.ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine("");
 
                 if (key.Key == ConsoleKey.N)
                 {
@@ -38,16 +38,20 @@ namespace Pig_Dice_Game
                     Console.WriteLine("You can only type y or n here.");
                 }
 
+                if (TurnContinues)
+                {
+                    TurnContinues = !DidIWin(ScoreToWin);
+                }
+
             }
             while (TurnContinues);
 
             Console.WriteLine("");
-            Console.WriteLine("Player Turn is over, CPU turn begins.");
-            Console.WriteLine("Hit any key to begin CPU turn.");
+            Console.WriteLine("Player Turn is over.");
+            Console.WriteLine("Hit any key to continue.");
             Console.ReadKey();
-
+            Console.WriteLine("");
+            Console.WriteLine("");
         }
-
-
     }
 }
